@@ -1,0 +1,99 @@
+body {
+  font-family: Inter, system-ui, -apple-system;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;          /* 🔥 THIS STOPS SCROLL */
+  background: url("/static/bg.jpg") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.container {
+  width: 760px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 18px;
+  padding: 28px;
+  color: #fff;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 28px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+input[type="file"],
+textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: none;
+  line-height: 1.5;
+  padding-right: 2px;
+}
+
+button {
+  background: #22d3ee;
+  color: #022c22;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #67e8f9;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.file-name {
+  font-size: 13px;
+  color: #e5e7eb;
+}
+
+.loader {
+  margin-top: 12px;
+  color: #ffffff;
+}
+
+.answer-box {
+  margin-top: 26px;
+  padding: 18px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 12px;
+  border-left: 4px solid hwb(188 13% 7%);
+}
+
+.footer {
+  margin-top: 28px;
+  font-size: 12px;
+  color: #000000;
+  text-align: center;
+}
+html {
+  overflow: hidden;
+}
