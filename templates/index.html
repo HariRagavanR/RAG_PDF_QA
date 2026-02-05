@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RAG PDF Q&A</title>
+  <style>
+    body { font-family: Arial; background:#f4f6f8; padding:40px; }
+    .box { background:#fff; padding:20px; border-radius:8px; max-width:700px; margin:auto; }
+    button { padding:10px 16px; }
+    input, textarea { width:100%; padding:10px; margin:10px 0; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>📄 RAG – PDF Question Answering</h2>
+    <form method="POST" enctype="multipart/form-data">
+      <input type="file" name="pdf" required />
+      <textarea name="question" placeholder="Ask a question from the PDF..." required></textarea>
+      <button type="submit">Ask</button>
+    </form>
+
+    {% if answer %}
+      <h3>🤖 Answer</h3>
+      <p>{{ answer }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
