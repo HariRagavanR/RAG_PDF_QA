@@ -50,7 +50,7 @@ This project demonstrates **end-to-end GenAI system design**, from local develop
 ---
 
 ## 📂 Project Structure
-
+```
 RAG_PDF_QA/
 ├── app.py                 # Flask application & session handling
 ├── rag_core.py            # Core RAG logic
@@ -66,7 +66,7 @@ RAG_PDF_QA/
 ├── uploads/               # Session-based uploaded PDFs
 ├── requirements.txt
 └── README.md
-
+```
 
 ---
 
