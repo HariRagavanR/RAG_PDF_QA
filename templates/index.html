@@ -15,25 +15,29 @@
   </div>
 
   <!-- 🔹 FORM 1: UPLOAD PDF (ONCE PER SESSION) -->
-  {% if not session.pdf_path %}
-  <form method="POST" enctype="multipart/form-data">
+  {% if not session.get("pdf_path") %}
+  <form method="POST" action="/" enctype="multipart/form-data">
     <input type="file" name="pdf" required>
     <button type="submit">Upload PDF</button>
   </form>
   {% else %}
-    <div class="file-name">📄 PDF uploaded. You can ask multiple questions.</div>
+    <div class="file-name">
+      📄 PDF uploaded successfully. You can now ask multiple questions.
+    </div>
   {% endif %}
 
   <!-- 🔹 FORM 2: ASK QUESTIONS (MULTIPLE TIMES) -->
-  {% if session.pdf_path %}
-  <form method="POST" onsubmit="showLoader()">
+  {% if session.get("pdf_path") %}
+  <form method="POST" action="/" onsubmit="showLoader()">
     <textarea
       name="question"
       placeholder="Ask a question from the PDF..."
       required></textarea>
 
     <button type="submit" id="askBtn">Ask</button>
-    <div class="loader" id="loader">Thinking… please wait</div>
+    <div class="loader" id="loader" style="display:none;">
+      Thinking… please wait
+    </div>
   </form>
   {% endif %}
 
@@ -52,8 +56,11 @@
 
 <script>
 function showLoader() {
-  document.getElementById("loader").style.display = "block";
-  document.getElementById("askBtn").disabled = true;
+  const loader = document.getElementById("loader");
+  const btn = document.getElementById("askBtn");
+
+  if (loader) loader.style.display = "block";
+  if (btn) btn.disabled = true;
 }
 </script>
 
