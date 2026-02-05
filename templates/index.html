@@ -1,27 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RAG PDF Q&A</title>
-  <style>
-    body { font-family: Arial; background:#f4f6f8; padding:40px; }
-    .box { background:#fff; padding:20px; border-radius:8px; max-width:700px; margin:auto; }
-    button { padding:10px 16px; }
-    input, textarea { width:100%; padding:10px; margin:10px 0; }
-  </style>
+  <title>DocuMind AI – PDF Question Answering</title>
+  <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <div class="box">
-    <h2>📄 RAG – PDF Question Answering</h2>
-    <form method="POST" enctype="multipart/form-data">
-      <input type="file" name="pdf" required />
-      <textarea name="question" placeholder="Ask a question from the PDF..." required></textarea>
-      <button type="submit">Ask</button>
-    </form>
 
-    {% if answer %}
-      <h3>🤖 Answer</h3>
-      <p>{{ answer }}</p>
-    {% endif %}
+<div class="container">
+  <h2>📄 DocuMind AI</h2>
+
+  <div class="subtitle">
+    Ask questions from your PDF — Answers are generated strictly from the document.
   </div>
+
+  <!-- 🔹 FORM 1: UPLOAD PDF (ONCE PER SESSION) -->
+  {% if not session.pdf_path %}
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="pdf" required>
+    <button type="submit">Upload PDF</button>
+  </form>
+  {% else %}
+    <div class="file-name">📄 PDF uploaded. You can ask multiple questions.</div>
+  {% endif %}
+
+  <!-- 🔹 FORM 2: ASK QUESTIONS (MULTIPLE TIMES) -->
+  {% if session.pdf_path %}
+  <form method="POST" onsubmit="showLoader()">
+    <textarea
+      name="question"
+      placeholder="Ask a question from the PDF..."
+      required></textarea>
+
+    <button type="submit" id="askBtn">Ask</button>
+    <div class="loader" id="loader">Thinking… please wait</div>
+  </form>
+  {% endif %}
+
+  <!-- 🔹 ANSWER DISPLAY -->
+  {% if answer %}
+  <div class="answer-box">
+    <strong>🤖 Answer</strong>
+    <p>{{ answer }}</p>
+  </div>
+  {% endif %}
+
+  <div class="footer">
+    DocuMind AI • Built with Flask + RAG • © 2026 Hari R
+  </div>
+</div>
+
+<script>
+function showLoader() {
+  document.getElementById("loader").style.display = "block";
+  document.getElementById("askBtn").disabled = true;
+}
+</script>
+
 </body>
 </html>
